@@ -70,7 +70,8 @@ public class MyAddOnTab : NTTabPage
         }
         catch (Exception error)
         {
-            NinjaTrader.Code.Output.Process("Connect exception: " + error.ToString(), PrintTo.OutputTab1);
+            // Security: Prevent sensitive stack trace details from leaking to the UI
+            NinjaTrader.Code.Output.Process("Connect exception: An error occurred while attempting to connect.", PrintTo.OutputTab1);
             return null;
         }
     }
