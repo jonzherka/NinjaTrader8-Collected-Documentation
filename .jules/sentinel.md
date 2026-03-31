@@ -1,0 +1,4 @@
+## 2024-05-24 - Prevent stack trace leak in documentation code samples
+**Vulnerability:** Example code in `3.0 Add On/Connection/connect.md` used `error.ToString()` in a generic catch block, which exposes the full stack trace to the user/logs, potentially leaking internal architecture or sensitive information.
+**Learning:** Documentation code samples are often copy-pasted directly into production by users. Insecure code in documentation spreads vulnerabilities. C#'s `Exception.ToString()` includes the stack trace; `Exception.Message` should be used for user-facing output.
+**Prevention:** Audit all code snippets in documentation for security best practices. Ensure error handling examples fail securely and don't leak information. Use `error.Message` or generic error strings instead of `error.ToString()`.
