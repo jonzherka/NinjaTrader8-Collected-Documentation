@@ -290,8 +290,9 @@ private NinjaTrader.Data.BarsRequest DoBarsRequest(Instrument instrument, int lo
        {
            if (errorCode != ErrorCode.NoError)
            {
-               // Handle any errors in requesting bars here
-               outputBox.Text = string.Format("Error on requesting bars: {0}, {1}", errorCode, errorMessage);
+               // Log the detailed error message securely and display a generic message to prevent information leakage
+               NinjaTrader.Code.Output.Process(string.Format("Error on requesting bars: {0}, {1}", errorCode, errorMessage), PrintTo.OutputTab1);
+               outputBox.Text = string.Format("An error occurred while requesting bars (Code: {0}). Please check the logs for details.", errorCode);
                return;
            }
        }));

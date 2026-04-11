@@ -52,11 +52,9 @@ NumericTextBox inherits from **System.Windows.Controls.Textbox**, and the follow
 ### C# Code Handling Logic
 
 ```csharp
-private NumericTextBox daysBack;
-
 private DependencyObject LoadXAML()
 {
-       // Find days back selector
-       daysBack = LogicalTreeHelper.FindLogicalNode(pageContent, "daysBackSelector") as NumericTextBox;
+       // Find days back selector and declare as a local variable since it's only used for initialization
+       NumericTextBox daysBack = LogicalTreeHelper.FindLogicalNode(pageContent, "daysBackSelector") as NumericTextBox;
 }
 ```
