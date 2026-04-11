@@ -41,13 +41,11 @@ AccountSelector can be used as an UI element users can interact with for selecti
 to any NinjaScript object you may be working on. */
 public class MyAddOnTab : NTTabPage
 {
-     private AccountSelector accountSelector
-
      public MyAddOnTab()
      {
          // Note: pageContent (not demonstrated in this example) is the page content of the XAML
-         // Find account selector
-         accountSelector = LogicalTreeHelper.FindLogicalNode(pageContent, "accountSelector") as AccountSelector;
+         // Find account selector and declare as a local variable since it's only used for event attachment
+         AccountSelector accountSelector = LogicalTreeHelper.FindLogicalNode(pageContent, "accountSelector") as AccountSelector;
 
          // When the account selector's selection changes, unsubscribe and resubscribe
          accountSelector.SelectionChanged += (o, args) =>
