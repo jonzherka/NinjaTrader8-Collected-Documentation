@@ -1,0 +1,4 @@
+## 2026-04-25 - Prevent Error Message Leakage in UI Snippets
+**Vulnerability:** C# code snippets in documentation directly passed detailed error messages (`errorCode` and `errorMessage` from API callbacks) to UI elements (`outputBox.Text`), establishing a poor security pattern that could lead to information disclosure if implemented directly by users.
+**Learning:** Documentation snippets frequently serve as copy-paste foundations for production code. Even in examples, error handling must demonstrate secure patterns (logging details backend, displaying generic messages frontend) to prevent propagating vulnerabilities to downstream developers.
+**Prevention:** When writing or reviewing C# documentation examples, explicitly split error handling: use backend/debug logging mechanisms (like `NinjaTrader.Code.Output.Process`) for detailed error states and assign only generic, non-sensitive failure messages to user-facing UI elements.
