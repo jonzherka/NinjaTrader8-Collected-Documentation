@@ -91,7 +91,7 @@ protected override void OnWindowCreated(Window window)
    myGrid = new Grid();
    myGrid.Children.Add(sampleButton);
  
-   //set my grid to the new row 
+   //set my grid to the new row
    Grid.SetRow(myGrid, 8);
  
    //finally, add our grid to the main grid
@@ -172,33 +172,33 @@ From time to time, you may need to access certain global data, such as account v
 
 {% table %}
 
-* Method
+- Method
 
-* Description
-
----
-
-* <`account`>.[AccountItemUpdate](accountitemupdate)
-
-* Triggers on account item updates
+- Description
 
 ---
 
-* <`account`>.[ExecutionUpdate](executionupdate)
+- <`account`>.[AccountItemUpdate](accountitemupdate)
 
-* Triggers on any execution
-
----
-
-* <`account`>.[OrderUpdate](orderupdate)
-
-* Triggers on any order state changes
+- Triggers on account item updates
 
 ---
 
-* <`account`>.[PositionUpdate](positionupdate)
+- <`account`>.[ExecutionUpdate](executionupdate)
 
-* Triggers on any position updates
+- Triggers on any execution
+
+---
+
+- <`account`>.[OrderUpdate](orderupdate)
+
+- Triggers on any order state changes
+
+---
+
+- <`account`>.[PositionUpdate](positionupdate)
+
+- Triggers on any position updates
 
 ---
 
@@ -290,8 +290,9 @@ private NinjaTrader.Data.BarsRequest DoBarsRequest(Instrument instrument, int lo
        {
            if (errorCode != ErrorCode.NoError)
            {
-               // Handle any errors in requesting bars here
-               outputBox.Text = string.Format("Error on requesting bars: {0}, {1}", errorCode, errorMessage);
+               // Handle any errors in requesting bars here securely
+               NinjaTrader.Code.Output.Process(string.Format("Error on requesting bars: {0}, {1}", errorCode, errorMessage), PrintTo.OutputTab1);
+               outputBox.Text = "An error occurred while requesting bars. Please check the log for details.";
                return;
            }
        }));
