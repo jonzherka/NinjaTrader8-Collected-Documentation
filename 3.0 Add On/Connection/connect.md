@@ -18,9 +18,9 @@ Connects to a connection.
 
 {% table %}
 
-* options
-* The connection option of what you want to connect to
-{% /table %}
+- options
+- The connection option of what you want to connect to
+  {% /table %}
 
 ## Examples
 
@@ -70,7 +70,11 @@ public class MyAddOnTab : NTTabPage
         }
         catch (Exception error)
         {
-            NinjaTrader.Code.Output.Process("Connect exception: " + error.Message, PrintTo.OutputTab1);
+            NinjaScript.Log("Connect exception: " + error.Message, LogLevel.Error);
+            NinjaTrader.Code.Output.Process(
+                "Connect exception occurred. Check logs for details.",
+                PrintTo.OutputTab1
+            );
             return null;
         }
     }
