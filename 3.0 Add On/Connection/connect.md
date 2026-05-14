@@ -70,7 +70,10 @@ public class MyAddOnTab : NTTabPage
         }
         catch (Exception error)
         {
-            NinjaTrader.Code.Output.Process("Connect exception: " + error.Message, PrintTo.OutputTab1);
+            // Log the actual error to the system log
+            NinjaScript.Log("Connect exception: " + error.Message, LogLevel.Error);
+            // Output a generic message to the UI
+            NinjaTrader.Code.Output.Process("Could not connect. An error occurred.", PrintTo.OutputTab1);
             return null;
         }
     }
