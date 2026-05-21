@@ -1,0 +1,4 @@
+## 2026-05-21 - Prevent Exception Information Leakage in Add-Ons
+**Vulnerability:** Add-On snippets previously used `NinjaTrader.Code.Output.Process()` to print raw exception messages (`error.Message`) directly to the UI (OutputTab1). This could expose sensitive internal details (stack paths, token errors, unhandled internal state) to end users.
+**Learning:** In NinjaTrader, `Output.Process` writes directly to the user-facing output window, while `NinjaScript.Log` writes to the system trace log files. Error handlers must split these concerns.
+**Prevention:** When catching exceptions in Add-On contexts (like `NTTabPage`), securely log the detailed exception message using `NinjaScript.Log(..., LogLevel.Error)` and only show a generic user-friendly message to the UI using `NinjaTrader.Code.Output.Process()`.
